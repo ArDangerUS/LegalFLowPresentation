@@ -11,15 +11,20 @@
             box-sizing: border-box;
         }
         
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
-            overflow: hidden;
         }
 
         .presentation-container {
             height: 100vh;
+            width: 100vw;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -28,135 +33,148 @@
 
         .slide {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            padding: 60px;
-            width: 90%;
-            max-width: 1100px;
-            min-height: 700px;
+            padding: 3vw;
+            width: 95vw;
+            max-width: 1200px;
+            height: 85vh;
+            max-height: 800px;
             display: none;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease-in-out;
+            transform: translateX(50px);
+            transition: all 0.5s ease-in-out;
             position: relative;
             overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .slide.active {
             display: block;
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         .slide-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 2vh;
             position: relative;
         }
 
         .slide-header::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
+            width: 80px;
+            height: 3px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 2px;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+            background-clip: text;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             text-align: center;
             font-weight: 600;
         }
 
         h3 {
-            font-size: 1.8rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 600;
             border-left: 4px solid #667eea;
-            padding-left: 20px;
+            padding-left: 15px;
+        }
+
+        h4 {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
             color: #666;
             text-align: center;
             font-weight: 400;
+            margin-bottom: 20px;
         }
 
         .two-column {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2vw;
+            margin: 2vh 0;
         }
 
-        .project-card {
+        .project-card, .feature-card {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 2vw;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            margin-bottom: 15px;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        .project-card:hover, .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border-color: #667eea;
         }
 
         .project-title {
-            font-size: 2rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
             color: #333;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .project-icon {
-            width: 50px;
-            height: 50px;
+            width: clamp(30px, 5vw, 40px);
+            height: clamp(30px, 5vw, 40px);
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
+            border-radius: 8px;
             color: white;
-            font-size: 24px;
+            font-size: clamp(14px, 3vw, 20px);
+            flex-shrink: 0;
         }
 
         .feature-list {
             list-style: none;
-            margin: 25px 0;
+            margin: 15px 0;
         }
 
         .feature-list li {
-            padding: 15px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(0,0,0,0.1);
             display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            line-height: 1.4;
         }
 
         .feature-list li:last-child {
@@ -164,194 +182,271 @@
         }
 
         .feature-icon {
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background: #667eea;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 16px;
+            font-size: 12px;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 8px;
+            margin-top: 15px;
         }
 
         .tech-badge {
             background: #667eea;
             color: white;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: clamp(0.7rem, 1.2vw, 0.9rem);
             font-weight: 500;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
         }
 
         .navigation {
             position: fixed;
-            bottom: 40px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
+            gap: 15px;
             z-index: 1000;
         }
 
         .nav-btn {
-            background: rgba(255,255,255,0.9);
-            border: none;
-            padding: 15px 25px;
-            border-radius: 50px;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
             font-weight: 600;
-            color: #333;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            min-width: 80px;
         }
 
-        .nav-btn:hover {
-            background: white;
+        .nav-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .nav-btn:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
+            border-color: #ccc;
+            color: #ccc;
         }
 
         .slide-counter {
             position: fixed;
-            top: 40px;
-            right: 40px;
-            background: rgba(255,255,255,0.9);
-            padding: 12px 24px;
-            border-radius: 25px;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: 600;
             color: #333;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
+            border: 2px solid #667eea;
         }
 
         .integration-diagram {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 40px 0;
-            gap: 30px;
+            margin: 3vh 0;
+            gap: 1vw;
+            flex-wrap: wrap;
         }
 
         .integration-box {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2vw;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
-            min-width: 200px;
+            min-width: clamp(120px, 18vw, 180px);
             border: 2px solid #e0e0e0;
+            margin: 5px;
         }
 
         .integration-arrow {
-            font-size: 2rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             color: #667eea;
             font-weight: bold;
+            margin: 0 5px;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 2vh 0;
         }
 
         .stat-card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 2vw;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
             color: #667eea;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .stat-label {
-            font-size: 1.1rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             color: #666;
             font-weight: 500;
+            line-height: 1.3;
         }
 
         .highlight {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
+            padding: 2vw;
+            border-radius: 12px;
+            margin: 2vh 0;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight h3, .highlight h4 {
+            color: white;
+            border: none;
+            padding: 0;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2vw;
+            margin: 2vh 0;
         }
 
-        .feature-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            border: 2px solid #e0e0e0;
-            transition: all 0.3s ease;
+        /* Инструкции для пользователя */
+        .instructions {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            max-width: 200px;
+            opacity: 0.7;
+            z-index: 999;
         }
 
-        .feature-card:hover {
-            border-color: #667eea;
-            transform: translateY(-3px);
+        .instructions h5 {
+            margin-bottom: 8px;
+            color: #667eea;
         }
 
+        .instructions div {
+            margin-bottom: 5px;
+        }
+
+        /* Адаптивность для мобильных */
         @media (max-width: 768px) {
             .slide {
-                padding: 30px;
-                width: 95%;
-                min-height: auto;
+                padding: 20px;
+                height: 90vh;
+                width: 98vw;
             }
             
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
+            .instructions {
+                display: none;
+            }
+            
+            .integration-diagram {
+                flex-direction: column;
+            }
+            
+            .integration-arrow {
+                transform: rotate(90deg);
+            }
             
             .two-column {
                 grid-template-columns: 1fr;
-                gap: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 15px;
+                height: 95vh;
+                width: 99vw;
             }
             
             .navigation {
-                bottom: 20px;
+                bottom: 10px;
+                gap: 10px;
             }
             
             .slide-counter {
-                top: 20px;
-                right: 20px;
+                top: 10px;
+                right: 10px;
             }
+        }
+
+        /* Скрыть скроллбар но оставить функциональность */
+        .slide::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .slide::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 3px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: #5a67d8;
         }
     </style>
 </head>
 <body>
+    <div class="instructions">
+        <h5>📱 Управление:</h5>
+        <div>🖱️ Кнопки внизу</div>
+        <div>⌨️ Стрелки ←→</div>
+        <div>📱 Свайп влево/вправо</div>
+        <div>🔄 Скролл внутри слайдов</div>
+    </div>
+
     <div class="presentation-container">
         <!-- Слайд 1: Титульный -->
         <div class="slide active">
@@ -362,7 +457,7 @@
             
             <div class="highlight">
                 <h3>Два взаимосвязанных проекта</h3>
-                <p style="font-size: 1.2rem; margin-top: 20px;">
+                <p style="font-size: clamp(0.9rem, 2vw, 1.2rem); margin-top: 15px;">
                     Веб-приложение для управления + Telegram бот для коммуникации
                 </p>
             </div>
@@ -373,7 +468,7 @@
                         <div class="project-icon">🌐</div>
                         Web Application
                     </div>
-                    <p>React + TypeScript система управления юридическими делами с полным функционалом CRM</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">React + TypeScript система управления юридическими делами с полным функционалом CRM</p>
                 </div>
                 
                 <div class="project-card">
@@ -381,7 +476,7 @@
                         <div class="project-icon">🤖</div>
                         Telegram Bot
                     </div>
-                    <p>Python бот для безопасной коммуникации между юристами и клиентами через Telegram</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Python бот для безопасной коммуникации между юристами и клиентами через Telegram</p>
                 </div>
             </div>
         </div>
@@ -407,7 +502,7 @@
                 <div class="feature-card">
                     <h3>👥 Управление пользователями</h3>
                     <ul class="feature-list">
-                        <li><div class="feature-icon">🏢</div> Система ролей (админы, юристы, клиенты)</li>
+                        <li><div class="feature-icon">👔</div> Система ролей</li>
                         <li><div class="feature-icon">🏢</div> Управление офисами</li>
                         <li><div class="feature-icon">✉️</div> Приглашения по email</li>
                         <li><div class="feature-icon">🔐</div> Безопасная авторизация</li>
@@ -483,7 +578,7 @@
                 </div>
 
                 <div class="feature-card">
-                    <h3>⚙️ Административные функции</h3>
+                    <h3>⚙️ Функции управления</h3>
                     <ul class="feature-list">
                         <li><div class="feature-icon">📊</div> Статистика сообщений</li>
                         <li><div class="feature-icon">⏱️</div> Rate limiting</li>
@@ -511,49 +606,49 @@
 
             <div class="integration-diagram">
                 <div class="integration-box">
-                    <div class="project-icon" style="margin: 0 auto 15px;">👥</div>
-                    <h3>Клиенты</h3>
-                    <p>Telegram</p>
+                    <div class="project-icon" style="margin: 0 auto 10px;">👥</div>
+                    <h4>Клиенты</h4>
+                    <p style="font-size: clamp(0.7rem, 1.5vw, 0.9rem);">Telegram</p>
                 </div>
                 <div class="integration-arrow">→</div>
                 <div class="integration-box">
-                    <div class="project-icon" style="margin: 0 auto 15px;">🤖</div>
-                    <h3>Bot API</h3>
-                    <p>Python</p>
+                    <div class="project-icon" style="margin: 0 auto 10px;">🤖</div>
+                    <h4>Bot API</h4>
+                    <p style="font-size: clamp(0.7rem, 1.5vw, 0.9rem);">Python</p>
                 </div>
                 <div class="integration-arrow">→</div>
                 <div class="integration-box">
-                    <div class="project-icon" style="margin: 0 auto 15px;">🗄️</div>
-                    <h3>Database</h3>
-                    <p>Supabase</p>
+                    <div class="project-icon" style="margin: 0 auto 10px;">🗄️</div>
+                    <h4>Database</h4>
+                    <p style="font-size: clamp(0.7rem, 1.5vw, 0.9rem);">Supabase</p>
                 </div>
                 <div class="integration-arrow">→</div>
                 <div class="integration-box">
-                    <div class="project-icon" style="margin: 0 auto 15px;">🌐</div>
-                    <h3>Web App</h3>
-                    <p>React</p>
+                    <div class="project-icon" style="margin: 0 auto 10px;">🌐</div>
+                    <h4>Web App</h4>
+                    <p style="font-size: clamp(0.7rem, 1.5vw, 0.9rem);">React</p>
                 </div>
             </div>
 
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>📡 Telegram Bot API</h3>
-                    <p>Обрабатывает входящие сообщения, сохраняет в базе данных с полным контекстом и метаданными</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Обрабатывает входящие сообщения, сохраняет в базе данных с полным контекстом и метаданными</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>🗄️ Supabase Database</h3>
-                    <p>Централизованное хранение сообщений, пользователей, дел и всех данных системы</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Централизованное хранение сообщений, пользователей, дел и всех данных системы</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>🌐 Web Interface</h3>
-                    <p>Интерфейс для юристов и администраторов для управления делами и просмотра сообщений</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Интерфейс для юристов и администраторов для управления делами и просмотра сообщений</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>🔄 Real-time Sync</h3>
-                    <p>Синхронизация в реальном времени между Telegram и веб-интерфейсом</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Синхронизация в реальном времени между Telegram и веб-интерфейсом</p>
                 </div>
             </div>
         </div>
@@ -589,9 +684,9 @@
 
             <div class="highlight">
                 <h3>🎯 Основные преимущества</h3>
-                <div class="two-column" style="margin-top: 30px;">
+                <div class="two-column" style="margin-top: 20px;">
                     <div>
-                        <h4 style="margin-bottom: 20px;">Для клиентов:</h4>
+                        <h4 style="margin-bottom: 15px;">Для клиентов:</h4>
                         <ul class="feature-list">
                             <li><div class="feature-icon">📱</div> Привычный интерфейс Telegram</li>
                             <li><div class="feature-icon">⚡</div> Мгновенная связь с юристом</li>
@@ -600,7 +695,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 style="margin-bottom: 20px;">Для юристов:</h4>
+                        <h4 style="margin-bottom: 15px;">Для юристов:</h4>
                         <ul class="feature-list">
                             <li><div class="feature-icon">📊</div> Централизованное управление</li>
                             <li><div class="feature-icon">🤖</div> ИИ помощник</li>
@@ -621,7 +716,7 @@
 
             <div class="highlight">
                 <h3>Готовое решение для юридических компаний</h3>
-                <p style="font-size: 1.2rem; margin: 20px 0;">
+                <p style="font-size: clamp(0.9rem, 2vw, 1.2rem); margin: 15px 0;">
                     Полностью интегрированная система управления делами с современным Telegram интерфейсом
                 </p>
             </div>
@@ -629,28 +724,28 @@
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>🚀 Готово к развертыванию</h3>
-                    <p>Оба проекта полностью разработаны и готовы к использованию в реальных условиях</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Оба проекта полностью разработаны и готовы к использованию в реальных условиях</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>🔧 Легко настраивается</h3>
-                    <p>Простая настройка через переменные окружения и интуитивный интерфейс</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Простая настройка через переменные окружения и интуитивный интерфейс</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>📈 Масштабируется</h3>
-                    <p>Поддержка множества офисов, пользователей и высокой нагрузки</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Поддержка множества офисов, пользователей и высокой нагрузки</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>🛡️ Безопасность превыше всего</h3>
-                    <p>Соблюдение всех требований конфиденциальности и адвокатской тайны</p>
+                    <p style="font-size: clamp(0.8rem, 1.5vw, 1rem);">Соблюдение всех требований конфиденциальности и адвокатской тайны</p>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 50px;">
+            <div style="text-align: center; margin-top: 30px;">
                 <h3 style="color: #667eea;">Спасибо за внимание!</h3>
-                <p style="font-size: 1.2rem; color: #666; margin-top: 20px;">
+                <p style="font-size: clamp(0.9rem, 2vw, 1.2rem); color: #666; margin-top: 15px;">
                     LegalFlow - современное решение для современных юридических компаний
                 </p>
             </div>
@@ -714,12 +809,12 @@
 
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        });
+        }, { passive: true });
 
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleGesture();
-        });
+        }, { passive: true });
 
         function handleGesture() {
             const minSwipeDistance = 50;
@@ -731,17 +826,20 @@
             }
         }
 
+        // Prevent default browser navigation on arrow keys
+        document.addEventListener('keydown', function(e) {
+            if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
+        }, false);
+
         // Initialize
         showSlide(0);
 
-        // Auto-advance slides (optional - uncomment to enable)
-        /*
-        setInterval(() => {
-            if (currentSlide < totalSlides - 1) {
-                changeSlide(1);
-            }
-        }, 10000); // 10 seconds
-        */
+        // Debug info
+        console.log('LegalFlow Presentation loaded');
+        console.log('Total slides:', totalSlides);
+        console.log('Navigation: Arrow keys, Space, buttons, or swipe on mobile');
     </script>
 </body>
 </html>
